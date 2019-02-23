@@ -81,6 +81,7 @@ class App extends Component {
     this.setState({
       secondsRemaining: INITIAL_SECONDS_REMAINING,
       timerStarted: false,
+      numberTriaged: this.state.numberTriaged + 1,
       done: true
     });
     clearInterval(this.intervalHandle);
@@ -96,7 +97,15 @@ class App extends Component {
 
   render() {
     window.triggerNextButton = () => {
-      this.nextButtonPressed();
+      if (this.state.timerStarted) {
+        this.nextButtonPressed();
+      }
+    };
+
+    window.triggerDoneButton = () => {
+      if (this.state.timerStarted) {
+        this.doneButtonPressed();
+      }
     };
 
     return (
@@ -143,7 +152,7 @@ class App extends Component {
           <View>
             <div
               className={
-                this.state.done && this.state.numberTriaged > 1 ? "pyro" : ""
+                this.state.done && this.state.numberTriaged >= 1 ? "pyro" : ""
               }
             >
               <div className="before" />
