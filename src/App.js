@@ -1,5 +1,12 @@
 import React, { Component } from "react";
-import { Button, StyleSheet, Text, View, ScrollView } from "react-native";
+import {
+  Button,
+  StyleSheet,
+  Text,
+  View,
+  ScrollView,
+  Switch
+} from "react-native";
 
 const INTERVAL_MINUTES = 2;
 
@@ -14,7 +21,8 @@ class App extends Component {
     done: false,
     numberTriaged: 0,
     totalSecondsElapsed: 0,
-    overtimeSeconds: 0
+    overtimeSeconds: 0,
+    showFireworks: true
   };
 
   beginCancelPressed() {
@@ -152,7 +160,11 @@ class App extends Component {
           <View>
             <div
               className={
-                this.state.done && this.state.numberTriaged >= 1 ? "pyro" : ""
+                this.state.done &&
+                this.state.numberTriaged >= 1 &&
+                this.state.showFireworks
+                  ? "pyro"
+                  : ""
               }
             >
               <div className="before" />
@@ -181,6 +193,17 @@ class App extends Component {
                   )
                 )}
               </Text>
+            )}
+            {this.state.done && (
+              <View styles={{ flexDirection: "row", flex: 1 }}>
+                <Text>Toggle fireworks</Text>
+                <Switch
+                  value={this.state.showFireworks}
+                  onValueChange={value => {
+                    this.setState({ showFireworks: value });
+                  }}
+                />
+              </View>
             )}
           </View>
         )}
