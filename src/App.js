@@ -137,6 +137,14 @@ class App extends Component {
         )}
         {(this.state.timerStarted || this.state.done) && (
           <View>
+            <div
+              class={
+                this.state.done && this.state.numberTriaged > 1 ? "pyro" : ""
+              }
+            >
+              <div class="before" />
+              <div class="after" />
+            </div>
             <Text style={styles.title}>
               Triage count:{"\n"}
               {this.state.numberTriaged}
