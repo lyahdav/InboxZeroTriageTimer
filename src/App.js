@@ -95,6 +95,10 @@ class App extends Component {
   }
 
   render() {
+    window.triggerNextButton = () => {
+      this.nextButtonPressed();
+    };
+
     return (
       <ScrollView style={styles.app}>
         <View style={styles.header}>
@@ -138,12 +142,12 @@ class App extends Component {
         {(this.state.timerStarted || this.state.done) && (
           <View>
             <div
-              class={
+              className={
                 this.state.done && this.state.numberTriaged > 1 ? "pyro" : ""
               }
             >
-              <div class="before" />
-              <div class="after" />
+              <div className="before" />
+              <div className="after" />
             </div>
             <Text style={styles.title}>
               Triage count:{"\n"}
